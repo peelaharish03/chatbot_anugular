@@ -18,7 +18,7 @@ export class ChatService {
   
   // Available query options for the user
   public readonly queryOptions = [
-    'What are your business hours???',
+    'What are your business hours?',
     'Where are you located?',
     'How can I contact support?',
     'What services do you provide?'
