@@ -1,0 +1,53 @@
+<div class="chatbot-container">
+  <!-- Chatbot Card -->
+  <div class="chatbot-card">
+    <!-- Header -->
+    <header class="chatbot-header">
+      <div class="bot-avatar">
+        <span>🤖</span>
+      </div>
+      <div class="header-info">
+        <h2>Chat Assistant</h2>
+        <p class="status">Online</p>
+      </div>
+    </header>
+
+    <!-- Chat Messages Container -->
+    <div class="chat-messages" #chatContainer>
+      <!-- Messages Loop -->
+      <div 
+        *ngFor="let message of messages; let last = last" 
+        class="message-wrapper fade-in"
+        [class]="getMessageClass(message)"
+      >
+        <div class="message-bubble">
+          <p>{{ message.text }}</p>
+        </div>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div *ngIf="isTyping" class="message-wrapper bot-message fade-in">
+        <div class="message-bubble typing-indicator">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Query Options -->
+    <div *ngIf="shouldShowQueryButtons" class="query-options">
+      <p class="query-prompt">Select a query:</p>
+      <div class="query-buttons">
+        <button
+          *ngFor="let query of queryOptions"
+          class="query-btn"
+          (click)="onQuerySelect(query)"
+          [disabled]="isTyping"
+        >
+          {{ query }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
